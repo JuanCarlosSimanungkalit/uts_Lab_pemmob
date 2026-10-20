@@ -73,21 +73,10 @@ tools/generate_assets.py       # pembuat gambar aset
 Prasyarat: Flutter SDK 3.24 atau lebih baru.
 
 ```bash
-# 1. Buat folder platform (android/ios/web) bila belum ada.
-#    Aman dijalankan di proyek ini; periksa bahwa lib/main.dart dan
-#    test/widget_test.dart tidak tertimpa.
-flutter create . --project-name quiz_app --platforms=android,ios,web
-
-# 2. Pasang font kustom (lihat assets/fonts/README.md)
-
-# 3. Ambil dependensi dan jalankan
+# 1. Ambil dependensi dan jalankan
 flutter pub get
 flutter run
 
-# Opsional: web, analisis, dan tes
-flutter run -d chrome
-flutter analyze
-flutter test
 ```
 
 ## Dokumentasi
