@@ -1,89 +1,90 @@
 # FlutterQuiz
 
+Aplikasi kuis pilihan ganda tentang Flutter dan Dart, dibuat untuk UTS Praktikum Pemrograman Mobile.
+
 ## Identitas Mahasiswa
 
-- **Nama:** Juan Carlos Simanungkalit
-- **NIM:** 241401117
-- **Lab:** Pemrograman Mobile 6
+| | |
+|---|---|
+| **Nama** | Juan Carlos Simanungkalit |
+| **NIM** | 241401117 |
+| **Lab** | Pemrograman Mobile 6 |
 
 ## Informasi Aplikasi
 
-**Nama aplikasi:** FlutterQuiz
+### Nama Aplikasi
 
-**Deskripsi:** Aplikasi kuis pilihan ganda berbasis Flutter. Pengguna memasukkan
-nama, menjawab 10 soal seputar Flutter dan Dart, lalu melihat skor akhir atas
-nama tersebut beserta ringkasan jawaban benar dan salah.
+FlutterQuiz
 
-**Fitur:**
+### Deskripsi Singkat
 
-- Input nama dengan validasi (tidak boleh kosong, minimal 2 karakter).
-- 10 soal pilihan ganda (data lokal/dummy, tanpa database).
-- Navigasi soal Sebelumnya/Berikutnya; jawaban yang dipilih tetap tersorot saat kembali ke soal.
-- Indikator progres ("Soal n dari 10") dengan bar animasi.
-- Skor akhir dengan cincin persentase, pesan sesuai nilai, dan ilustrasi.
-- Ringkasan jawaban per soal (benar/salah/tidak dijawab) yang bisa dibuka untuk melihat kunci jawaban.
-- Ulangi kuis (nama tetap) atau kembali ke awal (reset total).
-- Konfirmasi saat keluar di tengah kuis dan saat menyelesaikan kuis dengan soal kosong.
-- State management Provider: progres tidak hilang saat layar dirotasi atau berpindah halaman.
-- Dual-theme (terang/gelap) dengan tombol pengganti.
-- Adaptive & responsive: satu kolom di HP, dua kolom di landscape/tablet/web; semua ukuran dihitung dari lebar layar.
+FlutterQuiz meminta pengguna mengisi nama, menjawab 10 soal pilihan ganda seputar Flutter dan Dart, lalu menampilkan skor akhir atas nama pengguna beserta pembahasan tiap soal. Seluruh soal tersimpan di dalam kode, tanpa database.
 
-## Pemenuhan Kriteria Wajib
+### Fitur
 
-| # | Kriteria | Pemenuhan |
-|---|----------|-----------|
-| 1 | StatelessWidget & StatefulWidget | Hampir semua widget Stateless; `NameField` Stateful (controller dan form) |
-| 2 | Min. 2 halaman + navigasi | 3 halaman (Welcome, Quiz, Result) dengan `Navigator` |
-| 3 | Widget reusable di file terpisah | Folder `lib/widgets/`, satu widget per file |
-| 4 | Aset gambar/ikon | `assets/images/` + Material Icons |
-| 5 | Font kustom | Poppins dan Nunito (`assets/fonts/`) |
-| 6 | Ukuran dinamis | `lib/utils/responsive.dart` (pecahan lebar layar, tanpa piksel tetap) |
-| 7 | Progres tidak hilang | `QuizProvider` di atas `MaterialApp` |
-| 8 | Tanpa database | Soal berupa list Dart lokal (`lib/data/questions.dart`) |
-| 9 | GitHub per fitur | Lihat "Rencana Commit" di bawah |
-| 10 | Desain bebas | Ringkasan jawaban, dual-theme, layout adaptif |
-
-## Struktur Proyek
-
-```
-lib/
-├── main.dart                  # MultiProvider + MaterialApp + tema
-├── models/question.dart       # Question(text, options, correctIndex)
-├── data/questions.dart        # 10 soal dummy dalam satu list
-├── providers/
-│   ├── quiz_provider.dart     # nama, jawaban, indeks soal, skor
-│   └── theme_provider.dart    # mode terang/gelap
-├── screens/
-│   ├── welcome_screen.dart    # input nama
-│   ├── quiz_screen.dart       # soal dan pilihan
-│   └── result_screen.dart     # skor dan ringkasan jawaban
-├── widgets/                   # komponen reusable (satu file per widget)
-├── theme/app_theme.dart       # ColorScheme light/dark, font, warna status
-└── utils/responsive.dart      # breakpoint dan helper ukuran
-assets/
-├── fonts/                     # Poppins dan Nunito
-└── images/                    # logo, piala, buku
-test/                          # unit test provider + widget test
-docs/                          # spesifikasi desain
-tools/generate_assets.py       # pembuat gambar aset
-```
-
-## Cara Menjalankan
-
-Prasyarat: Flutter SDK 3.24 atau lebih baru.
-
-```bash
-# 1. Ambil dependensi dan jalankan
-flutter pub get
-flutter run
-
-```
+- Input nama dengan validasi: tidak boleh kosong dan minimal 2 karakter.
+- 10 soal pilihan ganda dengan 4 opsi per soal.
+- Tombol Sebelumnya dan Berikutnya. Jawaban yang sudah dipilih tetap tersorot saat pengguna kembali ke soal itu.
+- Indikator progres "Soal n dari 10" dengan bar animasi.
+- Halaman hasil dengan skor, persentase, dan pesan sesuai nilai.
+- Ringkasan jawaban per soal: benar, salah, atau tidak dijawab. Setiap soal bisa dibuka untuk melihat kunci jawabannya.
+- Ulangi Kuis dengan nama yang sama, atau Kembali ke Awal untuk mengisi nama baru.
+- Dialog konfirmasi saat pengguna keluar di tengah kuis dan saat menyelesaikan kuis dengan soal yang belum dijawab.
+- Progres kuis tetap tersimpan saat layar dirotasi atau pengguna berpindah halaman (state management Provider).
+- Mode terang dan gelap, dengan tombol pengganti di setiap halaman.
+- Tampilan responsif: satu kolom di HP, dua kolom di layar lebar seperti HP landscape, tablet, dan web.
 
 ## Dokumentasi
 
 ### Credit Aset
 
-- **Font Poppins** dan **Nunito** - Google Fonts, lisensi SIL Open Font License 1.1.
-- **Gambar** (`logo.png`, `trophy.png`, `book.png`) - dibuat sendiri secara programatik
-  dengan skrip `tools/generate_assets.py` (Python + Pillow), tanpa sumber eksternal.
-- **Ikon** - Material Icons bawaan Flutter (Apache License 2.0).
+| Aset | Sumber | Lisensi |
+|---|---|---|
+| Font Poppins | [Google Fonts](https://fonts.google.com/specimen/Poppins) | SIL Open Font License 1.1 |
+| Font Nunito | [Google Fonts](https://fonts.google.com/specimen/Nunito) | SIL Open Font License 1.1 |
+| Ikon | Material Icons bawaan Flutter | Apache License 2.0 |
+| Gambar `logo.png`, `trophy.png`, `book.png` | Dibuat sendiri dengan skrip `tools/generate_assets.py` (Python dan Pillow) | Milik pembuat |
+| Paket [`provider`](https://pub.dev/packages/provider) | pub.dev | MIT |
+
+
+### Mockup / Prototype
+
+https://www.figma.com/design/ozK1oRGMamEuHvCgPm5qCX/FlutterQuiz-Mockup?node-id=2-230&t=aiHTuYCl3bDJANFz-1
+
+## Struktur Proyek
+
+```
+lib/
+├── main.dart                  # MultiProvider, MaterialApp, tema
+├── models/question.dart       # model soal
+├── data/questions.dart        # 10 soal dalam satu list
+├── providers/
+│   ├── quiz_provider.dart     # nama, jawaban, indeks soal, skor
+│   └── theme_provider.dart    # mode terang dan gelap
+├── screens/
+│   ├── welcome_screen.dart    # input nama
+│   ├── quiz_screen.dart       # soal dan pilihan jawaban
+│   └── result_screen.dart     # skor dan ringkasan jawaban
+├── widgets/                   # widget reusable, satu file per widget
+├── theme/app_theme.dart       # warna, font, tema terang dan gelap
+└── utils/responsive.dart      # breakpoint dan helper ukuran
+assets/
+├── fonts/                     # Poppins dan Nunito
+└── images/                    # logo, piala, buku
+test/                          # unit test provider dan widget test
+```
+
+## Cara Menjalankan
+
+Prasyarat: Flutter SDK.
+
+```bash
+flutter pub get
+flutter run
+```
+
+Untuk menjalankan di browser:
+
+```bash
+flutter run -d chrome
+```
